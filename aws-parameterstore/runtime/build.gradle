@@ -1,0 +1,22 @@
+plugins {
+    id "io.quarkus.extension" version "${quarkusPlatformVersion}"
+}
+quarkusExtension {
+    deploymentModule = ":aws-parameterstore:deployment"
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = "aws-parameterstore"
+
+            from components.java
+        }
+    }
+}
+
+dependencies {
+    implementation platform("io.quarkus.platform:quarkus-amazon-services-bom:${quarkusPlatformVersion}")
+    implementation("io.quarkus:quarkus-core")
+    implementation("io.quarkiverse.amazonservices:quarkus-amazon-ssm")
+}

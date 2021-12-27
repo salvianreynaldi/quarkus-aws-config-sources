@@ -1,0 +1,29 @@
+subprojects {
+    apply plugin: "java-library"
+    apply plugin: "maven-publish"
+
+
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/salvianreynaldi/REPOSITORY")
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                    password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+                }
+            }
+        }
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.2"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.2"
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}

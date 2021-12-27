@@ -1,0 +1,4 @@
+rootProject.name = 'quarkus-aws-config-sources'
+
+include("aws-parameterstore:deployment")
+include("aws-parameterstore:runtime")
